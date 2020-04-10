@@ -1,0 +1,71 @@
+{
+  "_from": "round-slider",
+  "_id": "round-slider@1.4.1",
+  "_inBundle": false,
+  "_integrity": "sha512-AAM8oXfC3TTsz6IRbFNvH7LFE5JjytMZcK587mNgOgebnjvG2zUqxYfw9VwHb/e85hy8FgqpD5MbMQ7OX5c37A==",
+  "_location": "/round-slider",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "round-slider",
+    "name": "round-slider",
+    "escapedName": "round-slider",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/round-slider/-/round-slider-1.4.1.tgz",
+  "_shasum": "fe45d0f79c7912d07dd3b24d4cab8b729b732445",
+  "_spec": "round-slider",
+  "_where": "/home/bfox/Documents/nodejs/schaaf_V2",
+  "author": {
+    "name": "Soundar",
+    "email": "soundar@roundsliderui.com",
+    "url": "https://github.com/soundar24"
+  },
+  "bugs": {
+    "url": "https://github.com/soundar24/roundSlider/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "jquery": ">= 1.4.1"
+  },
+  "deprecated": false,
+  "description": "roundSlider - A free jQuery plugin",
+  "files": [
+    "dist/",
+    "src/",
+    "package.json",
+    "README.md"
+  ],
+  "homepage": "http://roundsliderui.com/",
+  "keywords": [
+    "roundslider",
+    "round slider",
+    "circular slider",
+    "radial slider",
+    "range slider",
+    "half circle slider",
+    "quarter slider",
+    "pie slider",
+    "knob slider",
+    "jquery plugin"
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "http://roundsliderui.com/licence.html"
+  },
+  "main": "dist/roundslider.min.js",
+  "name": "round-slider",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soundar24/roundSlider.git"
+  },
+  "style": "dist/roundslider.min.css",
+  "version": "1.4.1"
+}

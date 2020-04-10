@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <script type=module></script>
+    <title>Round-slider demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/circle/circle1.js"></script>
+    <script src="/circle/circle2.js" type="module"></script>
+    <script src = "/socket.io/socket.io.js"></script>
+    <script src="/js/style.min.js"></script>
+    <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/style1.css">
+
+
+    <base href="/">
+
+
+  </head>
+  <style>
+    body,h1 {font-family: "Raleway", sans-serif}
+    body, html {height: 100%}
+    .bgimg {
+      background-image: url('/img/background1.jpg');
+      min-height: 100%;
+      background-position: center;
+      background-size: cover;
+    }
+    </style>
+  <body>
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+      <div class="w3-display-topleft w3-padding-large w3-xlarge">
+        Tempo-Engine
+      </div>
+      <div class="w3-display-middle">
+        <form action = "/" method="post" class="ui form">
+          <center>
+          <h1 class="w3-jumbo w3-animate-top"> Bienvenue </h1>
+          <h5 class="w3-jumbo w3-animate-top"> modifier le tempo ? </h5>
+          <div id = "affichage">
+          <round-slider
+            value=<%= messages %>
+            valueLabel="Temperature"
+                style="
+      --round-slider-path-width: 30px;
+      --round-slider-linecap: butt;
+    "
+          ></round-slider>
+          <br>
+        <hr class="w3-border-grey" style="margin:auto;width:40%">
+        <p class="w3-large w3-center"><div class="w3-jumbo w3-animate-top" id="value"><%= messages %></div></p> </center>
+
+        <center><button type = "submit" id="submit">Modifier !</button></center>
+      </div>
+      <div class="w3-display-bottomleft w3-padding-large">
+      </div>
+    </div>
+    <style>
+      round-slider {
+        max-width: 200px;
+        transition: all 1.3s ease-out 0s;
+      }
+      round-slider.scaling:hover {
+        max-width: 400px;
+      }
+    </style>
+  </form>
+   
+    <script type="text/javascript">
+
+      var socket = io.connect('http://localhost:8080');
+      //socket.on('message',function(message)
+      //{
+      //  alert('le serveur a un message pour vous : '+ message);
+      //})
+      
+      
+      $("#submit").click(function()
+      {
+          var val = document.getElementById('value').textContent;
+        socket.emit('message',val);
+      })
+       
+
+
+      const setValue = function(value, active) {
+        document.querySelectorAll("round-slider").forEach(function(el) {
+          if(el.value === undefined) return;
+          el.value = value;
+        });
+        const span = document.querySelector("#value");
+         span.innerHTML = value;
+        if(active)
+          span.style.color = 'red';
+        else
+          span.style.color = 'white';
+      }
+      const setLow = function(value, active) {
+        document.querySelectorAll("round-slider").forEach(function(el) {
+          if(el.low === undefined) return;
+          el.low = value;
+        });
+        const span = document.querySelector("#low");
+         span.innerHTML = value;
+        if(active)
+          span.style.color = 'red';
+        else
+          span.style.color = 'white';
+      }
+      const setHigh = function(value, active) {
+        document.querySelectorAll("round-slider").forEach(function(el) {
+          if(el.high === undefined) return;
+          el.high = value;
+        });
+        const span = document.querySelector("#high");
+         span.innerHTML = value;
+        if(active)
+          span.style.color = 'red';
+        else
+          span.style.color = 'white';
+      }
+
+
+      document.querySelectorAll("round-slider").forEach(function (el) {
+        el.addEventListener('value-changed', function(ev) {
+          if(ev.detail.value !== undefined)
+          {
+            setValue(ev.detail.value, false);
+            //socket.emit('message',ev.detail.value);
+            var val = document.getElementById('value').textContent;
+            socket.emit('message',val);
+          }
+          else if(ev.detail.low !== undefined)
+          {
+            setLow(ev.detail.low, false);
+            //socket.emit('message',ev.detail.low);
+            var val = document.getElementById('value').textContent;
+            socket.emit('message',val);
+          }
+          else if(ev.detail.high !== undefined)
+          {
+            setHigh(ev.detail.high, false);
+            //socket.emit('message',ev.detail.high);
+            var val = document.getElementById('value').textContent;
+            socket.emit('message',val);
+          }
+        });
+
+        el.addEventListener('value-changing', function(ev) {
+          if(ev.detail.value !== undefined)
+            setValue(ev.detail.value, true);
+          else if(ev.detail.low !== undefined)
+            setLow(ev.detail.low, true);
+          else if(ev.detail.high !== undefined)
+            setHigh(ev.detail.high, true);
+        });
+      });
+      //var val = document.getElementById('value').textContent;
+      //alert(val);
+
+
+    </script>
+
+  </body>
+</html>
