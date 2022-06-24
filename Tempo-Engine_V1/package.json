@@ -16,7 +16,7 @@
     "express-session": "^1.17.0",
     "jQuery": "^1.7.4",
     "jquery": "^3.4.1",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.5.0",
     "query-selector": "^2.0.0",
     "round-slider": "^1.4.1",
     "socket.io": "^2.3.0"
